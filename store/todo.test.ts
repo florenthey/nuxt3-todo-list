@@ -90,4 +90,22 @@ describe("useTodoStore", () => {
     // Vérifie que le todo a bien été supprimé
     expect(store.items).toEqual([]);
   });
+
+  test("update a todo", () => {
+    store.add({ title: "test" });
+    // @ts-ignore
+    const item = store.items[0];
+    store.update(item.id, { done: true });
+    const updatedItem = store.items[0];
+    expect(updatedItem?.done).toBe(true);
+  });
+
+  test("update a todo title", () => {
+    store.add({ title: "test" });
+    // @ts-ignore
+    const item = store.items[0];
+    store.update(item.id, { title: "zobi" });
+    const updatedItem = store.items[0];
+    expect(updatedItem?.title).toBe("zobi");
+  });
 });

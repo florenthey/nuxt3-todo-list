@@ -31,8 +31,13 @@ const actions = {
     this.items = this.items.filter((todo: Todo) => todo.id !== id);
   },
   update(id: string, update: TodoUpdate) {
-    this.items = this.items.map((item) => {
-      item.id === id ? { ...item, ...update, updatedAt: new Date() } : item;
+    this.items = this.items.map((todo: Todo) => {
+      const index = this.items.findIndex((item) => item.id === id);
+      return (this.items[index] = {
+        ...this.items[index],
+        ...update,
+        updatedAt: new Date(),
+      });
     });
   },
 };
